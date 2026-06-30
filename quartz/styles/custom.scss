@@ -1,3 +1,58 @@
-@use "./variables.scss" as *;
+//@use "./base.scss";
 
-// put your custom CSS here!
+
+
+// 2. Fix the layout container stretching (The Root Cause in image_ea2865.png)
+.left.sidebar, 
+aside.left,
+div.sidebar {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important; // Forces items to snap to the top instead of stretching
+  gap: 0.75rem !important;                // Gives a tight, controlled space between components
+}
+
+// 3. Clear out dead space at the top and style title
+.page-title {
+  font-family: 'Lavishly Yours', cursive !important;
+  font-size: 2.5rem !important;
+  font-weight: 400;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1 !important;
+}
+
+// 4. Force Recent Notes entries closer together
+
+.recent-notes {
+  ul, .recent-ul {
+    li, .section-li {
+      // Pulls the inner layout tightly together
+      gap: 0 !important; 
+      
+      // Target the container that wraps the link and date together
+      .section, .desc {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+  }
+
+
+  // 5. Format dates: small, italicized, and indented right beneath the title
+  .meta, time, p.meta, .date {
+    display: block !important;
+    font-size: 0.75rem !important;
+    font-style: italic !important;
+    margin: 0 !important;
+    margin-top: -0.25rem !important; // 👈 Negative margin pulls the date UPwards
+    padding-top: 0 !important;
+  }
+}
+
+
+// 6. Tighten the Explorer ("bulletin") spacing
+.explorer, .bulletin {
+  margin-top: 0.5rem !important;
+  padding: 0 !important;
+}
